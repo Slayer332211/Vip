@@ -32,6 +32,7 @@
       font-weight: bold;
       color: #333;
       text-decoration: none;
+      cursor: pointer;
     }
     .nav-links {
       display: flex;
@@ -43,6 +44,7 @@
       text-decoration: none;
       padding: 5px 15px;
       transition: background-color 0.3s;
+      cursor: pointer;
     }
     .nav-links a:hover {
       background-color: #f0f0f0;
@@ -221,16 +223,26 @@
     footer a:hover {
       text-decoration: underline;
     }
+    #popular-section {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+    #popular-section h2 {
+      font-size: 2em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
   <!-- Header Section -->
   <header>
-    <a id="logo" href="index.html">VIPC</a>
+    <a id="logo" href="index.html" onclick="navigateToMainPage()">VIPC</a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
+      <a href="index.html" onclick="navigateToMainPage()">Home</a>
+      <a href="products.html" onclick="navigateToProductPage()">Products</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
@@ -255,10 +267,13 @@
     </div>
   </div>
 
-  <!-- Product Display -->
-  <main class="container" id="products-list" role="main" aria-label="Product List">
-    <!-- Products will be injected here -->
-  </main>
+  <!-- Popular Products Section -->
+  <section id="popular-section">
+    <h2>Most Popular</h2>
+    <div class="container" id="popular-products">
+      <!-- Popular products will be injected here -->
+    </div>
+  </section>
 
   <!-- New Store Section -->
   <section id="store-section">
@@ -299,8 +314,8 @@
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function displayProducts() {
-      const productsContainer = document.getElementById('products-list');
+    function displayProducts(containerId) {
+      const productsContainer = document.getElementById(containerId);
       productsContainer.innerHTML = '';
 
       products.forEach(product => {
@@ -345,6 +360,14 @@
       alert('Navigating to cart...');
     }
 
+    function navigateToMainPage() {
+      window.location.href = 'index.html';
+    }
+
+    function navigateToProductPage() {
+      window.location.href = 'products.html';
+    }
+
     function toggleLoginDropdown() {
       const dropdown = document.getElementById('login-dropdown');
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -353,12 +376,11 @@
     document.getElementById('cart-icon').addEventListener('click', goToCart);
     document.getElementById('login-icon').addEventListener('click', toggleLoginDropdown);
 
-    // Initial call to display products
-    displayProducts();
+    // Initial call to display products on the main page
+    displayProducts('popular-products');
 
     // Update cart count on page load
     document.getElementById('cart-count').textContent = cart.length;
   </script>
 </body>
-</html> 
-
+</html>
