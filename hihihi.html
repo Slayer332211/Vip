@@ -95,7 +95,7 @@
       background-color: #f0f0f0;
     }
     #hero-section {
-      background-image: url('images/c:\Users\karim\Downloads\ella-don-Ie9BekWw_Uk-unsplash.jpg'); /* Banner image added here */
+      background-image: url('images/ella-don-Ie9BekWw_Uk-unsplash.jpg'); /* Corrected Banner image path */
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -143,7 +143,7 @@
       border-radius: 8px;
       transition: transform 0.3s;
     }
-    .product :hover img {
+    .product:hover img {
       transform: scale(1.1);
     }
     .product h3 {
@@ -234,11 +234,11 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </div>
-    <div id="cart-icon" onclick="goToCart()">
+    <div id="cart-icon">
       <img src="https://via.placeholder.com/30?text=🛒" alt="Cart">
       <span id="cart-count">0</span>
     </div>
-    <div id="login-icon" onclick="toggleLoginDropdown()">
+    <div id="login-icon">
       <img src="https://via.placeholder.com/30?text=🔑" alt="Login">
       <div id="login-dropdown">
         <a href="login.html">Login</a>
@@ -262,7 +262,7 @@
 
   <!-- New Store Section -->
   <section id="store-section">
-    <img src="c:\Users\karim\Downloads\pexels-lulizler-3165335.jpg" alt="Store Image">
+    <img src="images/pexels-lulizler-3165335.jpg" alt="Store Image"> <!-- Corrected image path -->
     <h2>About Our Store</h2>
     <p>At VIPC, we strive to provide the best shopping experience for our customers. Our wide range of products ensures that you find exactly what you need, whether it's the latest technology or everyday essentials. We are committed to quality and customer satisfaction, making your shopping journey enjoyable and hassle-free.</p>
   </section>
@@ -297,7 +297,7 @@
       new Product(3, "Headphones", 99.99, "Noise cancelling headphones", "https://via.placeholder.com/250?text=Headphones"),
     ];
 
-    let cart = [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     function displayProducts() {
       const productsContainer = document.getElementById('products-list');
@@ -326,9 +326,7 @@
 
         const addToCartButton = document.createElement('button');
         addToCartButton.textContent = 'Add to Cart';
-        addToCartButton.onclick = function() {
-          addToCart(product);
-        };
+        addToCartButton.addEventListener('click', () => addToCart(product));
         productElement.appendChild(addToCartButton);
 
         productsContainer.appendChild(productElement);
@@ -338,6 +336,7 @@
     function addToCart(product) {
       cart.push(product);
       document.getElementById('cart-count').textContent = cart.length;
+      localStorage.setItem('cart', JSON.stringify(cart));
       alert(`${product.name} has been added to your cart!`);
     }
 
@@ -351,9 +350,15 @@
       dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
 
+    document.getElementById('cart-icon').addEventListener('click', goToCart);
+    document.getElementById('login-icon').addEventListener('click', toggleLoginDropdown);
+
     // Initial call to display products
     displayProducts();
+
+    // Update cart count on page load
+    document.getElementById('cart-count').textContent = cart.length;
   </script>
 </body>
-</html>
+</html> 
 
