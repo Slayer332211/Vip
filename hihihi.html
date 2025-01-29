@@ -97,7 +97,7 @@
       background-color: #f0f0f0;
     }
     #hero-section {
-      background-image: url('images/ella-don-Ie9BekWw_Uk-unsplash.jpg'); /* Corrected Banner image path */
+      background-image: url('https://github.com/Slayer332211/Vip/blob/main/ella-don-Ie9BekWw_Uk-unsplash2.JPG?raw=true');
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -118,13 +118,13 @@
     .container {
       width: 100%;
       max-width: 1200px;
-      margin: 80px auto; /* Keeps a nice margin on top */
+      margin: 80px auto;
       padding: 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Keeps responsive grid */
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
-      justify-items: center; /* Centers the items horizontally */
-      align-items: center;   /* Centers the items vertically */
+      justify-items: center;
+      align-items: center;
     }
     .product {
       background-color: white;
@@ -277,7 +277,7 @@
 
   <!-- New Store Section -->
   <section id="store-section">
-    <img src="images/pexels-lulizler-3165335.jpg" alt="Store Image"> <!-- Corrected image path -->
+    <img src="images/pexels-lulizler-3165335.jpg" alt="Store Image">
     <h2>About Our Store</h2>
     <p>At VIPC, we strive to provide the best shopping experience for our customers. Our wide range of products ensures that you find exactly what you need, whether it's the latest technology or everyday essentials. We are committed to quality and customer satisfaction, making your shopping journey enjoyable and hassle-free.</p>
   </section>
@@ -324,7 +324,7 @@
 
         const productImage = document.createElement('img');
         productImage.src = product.imageUrl;
-        productImage.alt = product.name; // Improved accessibility
+        productImage.alt = product.name;
         productElement.appendChild(productImage);
 
         const productName = document.createElement('h3');
@@ -356,7 +356,6 @@
     }
 
     function goToCart() {
-      // Logic to navigate to the cart page
       alert('Navigating to cart...');
     }
 
@@ -376,12 +375,8 @@
     document.getElementById('cart-icon').addEventListener('click', goToCart);
     document.getElementById('login-icon').addEventListener('click', toggleLoginDropdown);
 
-    // Initial call to display products on the main page
     displayProducts('popular-products');
-
-    // Update cart count on page load
     document.getElementById('cart-count').textContent = cart.length;
   </script>
 </body>
 </html>
-
